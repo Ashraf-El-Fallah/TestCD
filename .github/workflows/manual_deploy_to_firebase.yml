@@ -1,12 +1,14 @@
 name: Deploy to Firebase
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - develop
 
 jobs:
   build:
+    if: github.event.pull_request.merged == true
     name: Building and distributing app
     runs-on: ubuntu-latest
     steps:
